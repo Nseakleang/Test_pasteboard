@@ -6,7 +6,16 @@
 <body>
     <h1 id="demo">Hello</h1>
   <script>
-      document.getElementById("demo").innerHTML = window.clipboardData.getData('Text');
+      navigator.clipboard.readText()
+        .then(text => {
+            document.getElementById("demo").innerHTML = text;
+          console.log('Pasted content: ', text);
+        })
+        .catch(err => {
+            document.getElementById("demo").innerHTML = err;
+          console.error('Failed to read clipboard contents: ', err);
+        });
+<!--      document.getElementById("demo").innerHTML = window.clipboardData.getData('Text');-->
   </script>
 </body>
 </html>
